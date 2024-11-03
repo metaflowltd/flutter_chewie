@@ -49,27 +49,26 @@ class PlayerWithControls extends StatelessWidget {
             ),
           ),
           if (chewieLumenController.overlay != null) chewieLumenController.overlay!,
-          if (Theme.of(context).platform != TargetPlatform.iOS)
-            Consumer<PlayerNotifier>(
-              builder: (
-                BuildContext context,
-                PlayerNotifier notifier,
-                Widget? widget,
-              ) =>
-                  Visibility(
-                visible: !notifier.hideStuff,
-                child: AnimatedOpacity(
-                  opacity: notifier.hideStuff ? 0.0 : 0.8,
-                  duration: const Duration(
-                    milliseconds: 250,
-                  ),
-                  child: Container(
-                    decoration: const BoxDecoration(color: Colors.black54),
-                    child: Container(),
-                  ),
+          Consumer<PlayerNotifier>(
+            builder: (
+              BuildContext context,
+              PlayerNotifier notifier,
+              Widget? widget,
+            ) =>
+                Visibility(
+              visible: !notifier.hideStuff,
+              child: AnimatedOpacity(
+                opacity: notifier.hideStuff ? 0.0 : 0.8,
+                duration: const Duration(
+                  milliseconds: 250,
+                ),
+                child: Container(
+                  decoration: const BoxDecoration(color: Colors.black54),
+                  child: Container(),
                 ),
               ),
             ),
+          ),
           if (!chewieLumenController.isFullScreen)
             _buildControls(context, chewieLumenController)
           else
